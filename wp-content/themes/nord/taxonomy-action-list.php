@@ -71,11 +71,28 @@ get_header();
 				<?php
 					$current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					$args = array(
+						'tax_query' => array(
+							array(
+								'taxonomy' => 'action-list',
+								'field' => 'id',
+								'terms' => array( get_queried_object()->term_id )
+							)
+						),
+							'post_type' => 'action',
+							'post_status' => 'publish',
+							'orderby'     => 'date',
+							'order'       => 'DESC',
+							'posts_per_page' => $GLOBALS['wp_query']->query_vars['posts_per_page'],
+							'paged'          => $current_page
+					);
+					
+					
+					/*$args = array(
 						'category' 	     => 'action-list',
 						'post_type'      => 'action',
 						'posts_per_page' => $GLOBALS['wp_query']->query_vars['posts_per_page'],
 						'paged'          => $current_page
-					);
+					);*/
 				
 					$action_list = get_posts( $args );
 				?>
