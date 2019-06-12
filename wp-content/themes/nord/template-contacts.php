@@ -30,8 +30,6 @@ get_header();
 			?>
 		</div>
 		
-		<?php echo get_post_meta( get_the_ID(), 'code_block_contacts_page', $single = true ); ?>
-		
 		<div class="booking__top">
 			<div class="booking__form">
 				<?php
